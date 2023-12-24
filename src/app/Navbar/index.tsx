@@ -1,25 +1,17 @@
-"use client";
-import spanStyle from "./Navbar.module.css";
+import DarkModeToggle from "../DarkModeToggle";
+import LocationButton from "./locationButton";
 
 export default function Navbar() {
-  function handleLocation() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const {
-        coords: { latitude, longitude },
-      } = position;
-      console.log(latitude);
-    });
-  }
-
   return (
-    <nav className="absolute inset-0 z-10 grid h-24 grid-cols-12 items-center justify-items-center bg-white bg-opacity-25 shadow-lg shadow-cyan-700 backdrop-blur-sm">
+    <nav
+      className="absolute inset-0 z-10 grid h-20 grid-cols-12 items-center justify-items-center bg-white bg-opacity-25 shadow-lg shadow-cyan-700 backdrop-blur-[6px] 
+    dark:bg-black dark:bg-opacity-60"
+    >
       <svg
-        width="67"
-        height="65"
         viewBox="0 0 67 65"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="col-start-3"
+        className="col-start-3 h-4/6 [filter:_drop-shadow(2px_-1px_5px_#000000)] dark:filter-none"
       >
         <path
           fillRule="evenodd"
@@ -58,22 +50,21 @@ export default function Navbar() {
           </linearGradient>
         </defs>
       </svg>
-      <div className="search-bar col-span-4 col-start-5 flex items-center gap-6 rounded-lg border-2 border-cyan-700 border-opacity-30 bg-white bg-opacity-20 px-3 py-2">
-        <form action="" className="flex items-center gap-6">
-          <button type="submit">
+      <div className="search-bar col-start-5 col-end-9 flex h-3/5 max-w-max items-center gap-6 rounded-full bg-white bg-opacity-20 px-3 py-2">
+        <form action="" className="flex h-full w-full items-center gap-6">
+          <button type="submit" className="h-full">
             <svg
-              width="30"
-              height="30"
               viewBox="0 0 35 35"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="invert"
+              className="h-4/5"
             >
               <path
                 d="M2.04688 32.625L9.26653 25.3925M5.26562 15.7266C5.26562 19.3546 6.70687 22.8341 9.27231 25.3996C11.8378 27.965 15.3172 29.4062 18.9453 29.4062C22.5734 29.4062 26.0529 27.965 28.6183 25.3996C31.1838 22.8341 32.625 19.3546 32.625 15.7266C32.625 12.0985 31.1838 8.619 28.6183 6.05356C26.0529 3.48812 22.5734 2.04688 18.9453 2.04688C15.3172 2.04688 11.8378 3.48812 9.27231 6.05356C6.70687 8.619 5.26562 12.0985 5.26562 15.7266Z"
                 stroke="black"
                 strokeWidth="3.21875"
                 strokeLinecap="round"
+                className="stroke-white"
               />
             </svg>
           </button>
@@ -82,45 +73,12 @@ export default function Navbar() {
             name="search"
             id="search"
             placeholder="Enter your city"
-            className="h-9 bg-white bg-opacity-0 text-xl outline-none"
+            className="w-full bg-white bg-opacity-0 text-xl outline-none placeholder:text-black dark:placeholder:text-white"
           />
         </form>
-        <button name="location" onClick={handleLocation}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40px"
-            height="40px"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#000000"
-            className="invert"
-          >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <g id="SVGRepo_iconCarrier">
-              {" "}
-              <path
-                d="M19 12C19 15.866 15.866 19 12 19M19 12C19 8.13401 15.866 5 12 5M19 12H21M12 19C8.13401 19 5 15.866 5 12M12 19V21M5 12C5 8.13401 8.13401 5 12 5M5 12H3M12 5V3M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
-                stroke="#000000"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />{" "}
-            </g>
-          </svg>
-        </button>
+        <LocationButton />
       </div>
-      <input
-        type="checkbox"
-        name="theme"
-        id="theme"
-        className={`relative col-start-10 flex h-10 w-20 items-center ${spanStyle.fofo}`}
-        onChange={(e) => console.log(e.target.checked)}
-      />
+      <DarkModeToggle />
     </nav>
   );
 }

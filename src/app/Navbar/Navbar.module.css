@@ -15,26 +15,3 @@
     @apply w-screen;
   }
 }
-
-.fofo::before {
-  content: "";
-  @apply absolute z-10 h-full w-full rounded-full bg-black;
-}
-
-.fofo::after {
-  content: "";
-  @apply absolute
-         left-1
-         right-auto
-         z-20
-         h-5/6
-         w-2/5
-         rounded-full
-         bg-yellow-500
-         transition-all duration-300;
-}
-
-.fofo:checked::after {
-  @apply left-11
-         bg-slate-800;
-}
